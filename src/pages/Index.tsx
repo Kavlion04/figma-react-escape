@@ -1,12 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect, useState } from "react";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import CategoryNav from "@/components/CategoryNav";
+import FeaturedPosts from "@/components/FeaturedPosts";
+import RecentPosts from "@/components/RecentPosts";
+import Newsletter from "@/components/Newsletter";
+import Footer from "@/components/Footer";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading for a brief period for animation purposes
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <div className="text-2xl font-serif text-escape-dark animate-pulse">
+          Escape.
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <Hero />
+      <CategoryNav />
+      <FeaturedPosts />
+      <RecentPosts />
+      <Newsletter />
+      <Footer />
     </div>
   );
 };
